@@ -13,7 +13,7 @@ import com.zzj.mvvm.util.TUtil;
  * @desc :
  * @version: 1.0
  */
-public class BaseViewModel<T extends BaseRepository> extends AndroidViewModel {
+public class BaseViewModel<T extends Repository> extends AndroidViewModel {
 
     public T mRepository;
 
@@ -28,5 +28,9 @@ public class BaseViewModel<T extends BaseRepository> extends AndroidViewModel {
         if(mRepository!=null){
             mRepository.unDisposable();
         }
+    }
+
+    protected void fails(int code,String msg){
+
     }
 }

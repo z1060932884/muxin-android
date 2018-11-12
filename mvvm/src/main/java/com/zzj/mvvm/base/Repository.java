@@ -1,5 +1,6 @@
 package com.zzj.mvvm.base;
 
+
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
@@ -10,11 +11,13 @@ import io.reactivex.disposables.Disposable;
  * @desc :
  * @version: 1.0
  */
-public abstract class BaseRepository {
+public abstract class Repository {
+
+
 
     private CompositeDisposable compositeDisposable;
 
-    public BaseRepository(){
+    public Repository(){
 
     }
     /**

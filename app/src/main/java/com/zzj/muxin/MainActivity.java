@@ -1,13 +1,28 @@
 package com.zzj.muxin;
 
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.zzj.muxin.fragment.DealCmoneyDetailsRealInfoFragment;
+import com.zzj.mvvm.base.BaseActivity;
+
+/**
+ * @author JamesZhang
+ */
+
+public class MainActivity extends BaseActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected void initView(Bundle savedInstanceState) {
+        loadRootFragment(R.id.fl_container,DealCmoneyDetailsRealInfoFragment.newInstance());
     }
+
+
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_main;
+    }
+
+
 }

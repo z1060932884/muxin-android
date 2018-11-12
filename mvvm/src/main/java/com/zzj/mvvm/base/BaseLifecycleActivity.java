@@ -25,9 +25,9 @@ import com.zzj.mvvm.util.TUtil;
 public abstract class BaseLifecycleActivity<T extends BaseViewModel> extends BaseActivity {
     protected T mBaseViewModel;
 
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initView(Bundle savedInstanceState) {
         mBaseViewModel = VMProvides(this, (Class<T>) TUtil.getInstance(this, 0));
         dataObserver();
     }
@@ -55,7 +55,10 @@ public abstract class BaseLifecycleActivity<T extends BaseViewModel> extends Bas
         showLoading();
     }
     protected void showError(Class<? extends BaseStateControl> stateView, Object tag) {
-        loadManager.showStateView(stateView, tag);
+        if(loadManager!=null){
+            loadManager.showStateView(stateView, tag);
+        }
+
     }
 
     protected void showError(Class<? extends BaseStateControl> stateView) {
@@ -63,11 +66,15 @@ public abstract class BaseLifecycleActivity<T extends BaseViewModel> extends Bas
     }
 
     protected void showSuccess() {
-        loadManager.showSuccess();
+        if(loadManager != null){
+            loadManager.showSuccess();
+        }
     }
 
     protected void showLoading() {
-        loadManager.showStateView(LoadingState.class);
+        if(loadManager!=null){
+            loadManager.showStateView(LoadingState.class);
+        }
     }
 
     protected Observer observer = new Observer<String>() {

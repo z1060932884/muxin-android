@@ -18,23 +18,33 @@ import me.yokeyword.fragmentation.SupportActivity;
  */
 public abstract class BaseActivity extends SupportActivity {
 
-    protected LoadManager loadManager;
+    protected LoadManager loadManager = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //设置布局内容
-        setContentView(getLayoutId());
-        loadManager = new LoadManager.Builder()
-                .setViewParams(this)
-                .setListener(new BaseStateControl.OnRefreshListener() {
-                    @Override
-                    public void onRefresh(View v) {
-                        onStateRefresh();
-                    }
-                })
-                .build();
+        if(getLayoutId()!=0){
+            setContentView(getLayoutId());
+        }
+        if(isLoadingManager()){
+            loadManager = new LoadManager.Builder()
+                    .setViewParams(this)
+                    .setListener(new BaseStateControl.OnRefreshListener() {
+                        @Override
+                        public void onRefresh(View v) {
+                            onStateRefresh();
+                        }
+                    }).build();
+        }
+        initView(savedInstanceState);
     }
+
+    /**
+     * 初始化控件
+     * @param savedInstanceState
+     */
+    protected abstract void initView(Bundle savedInstanceState);
 
     /**
      *
@@ -49,4 +59,8 @@ public abstract class BaseActivity extends SupportActivity {
      * @return
      */
     public abstract int getLayoutId();
+
+    public boolean isLoadingManager(){
+        return false;
+    }
 }

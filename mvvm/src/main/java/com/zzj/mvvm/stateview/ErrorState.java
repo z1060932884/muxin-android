@@ -6,8 +6,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.tqzhang.stateview.stateview.BaseStateControl;
+import com.zzj.mvvm.R;
 
-import trecyclerview.com.mvvm.R;
 
 /**
  * @author：tqzhang on 18/7/16 15:07
