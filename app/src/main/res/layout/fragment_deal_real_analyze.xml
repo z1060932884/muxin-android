@@ -1,17 +1,366 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    >
 
     <TextView
+        android:id="@+id/tv_market_profundity_chart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="分析fragment"
+        android:layout_marginTop="@dimen/len_20"
+        android:text="市场深度图"
+        app:layout_constraintBottom_toTopOf="@+id/lineChart"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/lineChart"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:layout_margin="@dimen/len_20"
+        android:padding="@dimen/dp_4"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_market_profundity_chart"></com.github.mikephil.charting.charts.LineChart>
+
+    <TextView
+        android:id="@+id/tv_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/len_28"
+        android:text="价格"
+        android:textSize="@dimen/len_16"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lineChart"
+
         />
+
+    <LinearLayout
+        android:id="@+id/ll_buy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/len_20"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/ll_sale"
+        app:layout_constraintTop_toBottomOf="@+id/tv_price">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_circle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/len_6"
+            android:text="买" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_sale"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/len_16"
+        android:layout_marginTop="@dimen/len_20"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toRightOf="@+id/ll_buy"
+        app:layout_constraintRight_toLeftOf="@+id/ll_low"
+        app:layout_constraintTop_toBottomOf="@+id/tv_price">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_circle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/len_6"
+            android:text="卖" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_low"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/len_16"
+        android:layout_marginTop="@dimen/len_20"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toRightOf="@+id/ll_sale"
+        app:layout_constraintRight_toLeftOf="@+id/ll_news_price"
+        app:layout_constraintTop_toBottomOf="@+id/tv_price">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_circle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/len_6"
+            android:text="低" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_news_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/len_16"
+        android:layout_marginTop="@dimen/len_20"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toRightOf="@+id/ll_low"
+        app:layout_constraintRight_toLeftOf="@+id/ll_high"
+        app:layout_constraintTop_toBottomOf="@+id/tv_price">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_circle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/len_6"
+            android:text="最新价" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_high"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/len_16"
+        android:layout_marginTop="@dimen/len_20"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toRightOf="@+id/ll_news_price"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_price">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_circle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/len_6"
+            android:text="高" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_entry_order"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="@dimen/len_16"
+        android:background="@drawable/shape_item_deal_real_fund_bg"
+        android:gravity="center"
+        android:text="挂单"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_buy" />
+
+    <TextView
+        android:id="@+id/tv_buy_entry_ten"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/len_16"
+        android:text="买盘10档"
+        android:textSize="@dimen/len_16"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/tv_sale_entry_ten"
+        app:layout_constraintTop_toBottomOf="@+id/tv_entry_order" />
+
+    <TextView
+        android:id="@+id/tv_sale_entry_ten"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/len_16"
+        android:text="卖盘10档"
+        android:textSize="@dimen/len_16"
+        app:layout_constraintLeft_toRightOf="@+id/tv_buy_entry_ten"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_entry_order" />
+
+    <FrameLayout
+        android:id="@+id/fl_entry_order_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/len_16"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_buy_entry_ten">
+
+        <ProgressBar
+            style="@style/progress_deal_analyze"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:progress="30" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical"
+            android:layout_marginLeft="@dimen/len_16"
+            android:text="30%"
+            android:textColor="@color/white"
+            android:textSize="@dimen/len_16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="@dimen/len_16"
+            android:text="70%"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+    </FrameLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_entry_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/fl_entry_order_progress"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        >
+
+    </android.support.v7.widget.RecyclerView>
+    <TextView
+        android:id="@+id/tv_appoint_title"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:text="委单量"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/rv_entry_order"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+    <LinearLayout
+        android:id="@+id/ll_appoint"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@drawable/shape_item_deal_real_fund_bg"
+        app:layout_constraintTop_toBottomOf="@+id/tv_appoint_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        >
+        <TextView
+            android:id="@+id/tv_appoint_left"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="委单量"
+            android:layout_marginLeft="@dimen/len_16"
+            />
+        <TextView
+            android:id="@+id/tv_buy_one"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="买一价"
+            android:layout_weight="1"
+            android:layout_marginRight="14dp"
+            android:gravity="right"
+            />
+        <TextView
+            android:id="@+id/tv_sale_one"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="卖一价"
+            android:layout_weight="1"
+            android:layout_marginLeft="14dp"
+            />
+        <TextView
+            android:id="@+id/tv_appoint_right"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="委单量"
+            android:gravity="right"
+            android:layout_marginRight="28dp"
+            />
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_appoint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/ll_appoint"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+
+        >
+
+    </android.support.v7.widget.RecyclerView>
+    <TextView
+        android:id="@+id/tv_turnover"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="成交量"
+        android:gravity="center"
+        android:textSize="@dimen/len_16"
+        app:layout_constraintTop_toBottomOf="@+id/rv_appoint"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+    <LinearLayout
+        android:id="@+id/ll_turnover_order"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@drawable/shape_item_deal_real_fund_bg"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/tv_turnover"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        >
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:text="成交时间"
+            android:gravity="right"
+            />
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="成交价"
+            android:textSize="@dimen/len_14"
+            android:gravity="right"
+            />
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="成交量"
+            android:textSize="@dimen/len_14"
+            android:gravity="right"
+            />
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_turnover"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/ll_turnover_order"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+
+        ></android.support.v7.widget.RecyclerView>
 
 </android.support.constraint.ConstraintLayout>

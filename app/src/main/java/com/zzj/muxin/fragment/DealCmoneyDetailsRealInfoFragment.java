@@ -20,7 +20,7 @@ import butterknife.OnClick;
  * @author : zzj
  * @e-mail : zhangzhijun@pansoft.com
  * @date : 2018/11/10 9:42
- * @desc :
+ * @desc :  详情fragment
  * @version: 1.0
  */
 public class DealCmoneyDetailsRealInfoFragment extends BaseLifecycleFragment<DealRealInfoViewModel> {

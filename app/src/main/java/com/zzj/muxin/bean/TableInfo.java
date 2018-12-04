@@ -13,6 +13,44 @@ public class TableInfo  {
     private String sale;
     private String flowInto;
 
+    private float barMax;
+    private float barMin;
+    private float barLeft;
+    private float barRight;
+
+
+    public float getBarMax() {
+        return barMax;
+    }
+
+    public void setBarMax(float barMax) {
+        this.barMax = barMax;
+    }
+
+    public float getBarMin() {
+        return barMin;
+    }
+
+    public void setBarMin(float barMin) {
+        this.barMin = barMin;
+    }
+
+    public float getBarLeft() {
+        return barLeft;
+    }
+
+    public void setBarLeft(float barLeft) {
+        this.barLeft = barLeft;
+    }
+
+    public float getBarRight() {
+        return barRight;
+    }
+
+    public void setBarRight(float barRight) {
+        this.barRight = barRight;
+    }
+
     public String getTime() {
         return time;
     }

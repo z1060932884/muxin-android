@@ -4,6 +4,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cl_content"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     >
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"

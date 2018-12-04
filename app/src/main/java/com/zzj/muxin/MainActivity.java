@@ -14,7 +14,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        loadRootFragment(R.id.fl_container,DealCmoneyDetailsRealInfoFragment.newInstance());
+//        loadRootFragment(R.id.fl_container,DealCmoneyDetailsRealInfoFragment.newInstance());
     }
 
 

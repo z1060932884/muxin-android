@@ -1,5 +1,6 @@
 package com.zzj.mvvm.base;
 
+import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProviders;
@@ -16,6 +17,9 @@ import com.zzj.mvvm.stateview.LoadingState;
 import com.zzj.mvvm.stateview.StateConstants;
 import com.zzj.mvvm.util.TUtil;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author : zzj
  * @e-mail : zhangzhijun@pansoft.com
@@ -27,11 +31,23 @@ public abstract class BaseLifecycleFragment <T extends BaseViewModel> extends Ba
 
     protected T mBaseViewModel;
 
+    protected Object mStateEventKey;
+
+    protected String mStateEventTag;
+
+    private List<Object> eventKeys = new ArrayList<>();
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBaseViewModel = VMProviders(this, (Class<T>) TUtil.getInstance(this, 0));
-
+        if (null != mBaseViewModel) {
+            dataObserver();
+            mStateEventKey = getStateEventKey();
+            mStateEventTag = getStateEventTag();
+            eventKeys.add(new StringBuilder((String) mStateEventKey).append(mStateEventTag).toString());
+            LiveBus.getDefault().subscribe(mStateEventKey, mStateEventTag).observe(this, observer);
+        }
     }
 
     @Override
@@ -40,6 +56,21 @@ public abstract class BaseLifecycleFragment <T extends BaseViewModel> extends Ba
         dataObserver();
     }
 
+    /**
+     * ViewPager +fragment tag
+     *
+     * @return
+     */
+    protected String getStateEventTag() {
+        return "";
+    }
+
+    /**
+     * get state page event key
+     *
+     * @return
+     */
+    protected abstract Object getStateEventKey();
     /**
      *
      * @return ViewModel
@@ -54,11 +85,25 @@ public abstract class BaseLifecycleFragment <T extends BaseViewModel> extends Ba
     }
 
 //    @Override
-//    protected void onStateRefresh() {
+    protected void onStateRefresh() {
 //        showLoading();
-//    }
+    }
 
+    protected <T> MutableLiveData<T> registerObserver(Object eventKey, Class<T> tClass) {
 
+        return registerObserver(eventKey, null, tClass);
+    }
+
+    protected <T> MutableLiveData<T> registerObserver(Object eventKey, String tag, Class<T> tClass) {
+        String event;
+        if (TextUtils.isEmpty(tag)) {
+            event = (String) eventKey;
+        } else {
+            event = eventKey + tag;
+        }
+        eventKeys.add(event);
+        return LiveBus.getDefault().subscribe(eventKey, tag, tClass);
+    }
     /**
      * 获取网络数据
      */
@@ -66,21 +111,21 @@ public abstract class BaseLifecycleFragment <T extends BaseViewModel> extends Ba
 
     }
 
-//    protected void showError(Class<? extends BaseStateControl> stateView, Object tag) {
+    protected void showError(Class<? extends BaseStateControl> stateView, Object tag) {
 //        loadManager.showStateView(stateView, tag);
-//    }
-//
-//    protected void showError(Class<? extends BaseStateControl> stateView) {
-//        showError(stateView, null);
-//    }
-//
-//    protected void showSuccess() {
+    }
+
+    protected void showError(Class<? extends BaseStateControl> stateView) {
+        showError(stateView, null);
+    }
+
+    protected void showSuccess() {
 //        loadManager.showSuccess();
-//    }
-//
-//    protected void showLoading() {
+    }
+
+    protected void showLoading() {
 //        loadManager.showStateView(LoadingState.class);
-//    }
+    }
 
 
     protected Observer observer = new Observer<String>() {
@@ -88,15 +133,25 @@ public abstract class BaseLifecycleFragment <T extends BaseViewModel> extends Ba
         public void onChanged(@Nullable String state) {
             if (!TextUtils.isEmpty(state)) {
                 if (StateConstants.ERROR_STATE.equals(state)) {
-//                    showError(ErrorState.class, "2");
+                    showError(ErrorState.class, "2");
                 } else if (StateConstants.NET_WORK_STATE.equals(state)) {
-//                    showError(ErrorState.class, "1");
+                    showError(ErrorState.class, "1");
                 } else if (StateConstants.LOADING_STATE.equals(state)) {
-//                    showLoading();
+                    showLoading();
                 } else if (StateConstants.SUCCESS_STATE.equals(state)) {
-//                    showSuccess();
+                    showSuccess();
                 }
             }
         }
     };
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (eventKeys != null && eventKeys.size() > 0) {
+            for (int i = 0; i < eventKeys.size(); i++) {
+                LiveBus.getDefault().clear(eventKeys.get(i));
+            }
+        }
+    }
 }
