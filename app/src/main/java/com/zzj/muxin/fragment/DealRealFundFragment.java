@@ -2,6 +2,7 @@ package com.zzj.muxin.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.SeekBar;
 
 import com.bin.david.form.core.SmartTable;
 import com.bin.david.form.data.column.Column;
+import com.blankj.utilcode.util.LogUtils;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
@@ -84,6 +86,7 @@ public class DealRealFundFragment extends BaseLifecycleFragment<DealRealInfoView
     @Override
     protected void initData() {
         super.initData();
+
         setData(2,2);
         initTableData();
     }
@@ -177,6 +180,16 @@ public class DealRealFundFragment extends BaseLifecycleFragment<DealRealInfoView
         l.setEnabled(false);
 
         initBarChart();
+    }
+
+    @Override
+    protected void lazyLoad() {
+        super.lazyLoad();
+        LogUtils.e(TAG+"------>lazyLoad---");
+    }
+    @Override
+    protected Object getStateEventKey() {
+        return TAG;
     }
 
 

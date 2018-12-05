@@ -4,11 +4,13 @@ import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
@@ -103,7 +105,11 @@ public class DealRealAnalyzeFragment extends BaseLifecycleFragment<DealRealInfoV
         return R.layout.fragment_deal_real_analyze;
     }
 
-
+    @Override
+    protected void lazyLoad() {
+        super.lazyLoad();
+        LogUtils.e(TAG+"------>lazyLoad---");
+    }
     @Override
     protected void initWidget(View root) {
         super.initWidget(root);
@@ -125,6 +131,11 @@ public class DealRealAnalyzeFragment extends BaseLifecycleFragment<DealRealInfoV
         rv_appoint.setNestedScrollingEnabled(true);
         rv_turnover.setNestedScrollingEnabled(true);
 
+    }
+
+    @Override
+    protected Object getStateEventKey() {
+        return TAG;
     }
 
     Random random = new Random();

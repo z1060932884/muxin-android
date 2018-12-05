@@ -1,7 +1,10 @@
 package com.zzj.muxin.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.View;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.zzj.muxin.R;
 import com.zzj.muxin.viewmodel.DealRealInfoViewModel;
 import com.zzj.mvvm.base.BaseLifecycleFragment;
@@ -23,8 +26,19 @@ public class DealRealBriefingFragment extends BaseLifecycleFragment<DealRealInfo
         fragment.setArguments(args);
         return fragment;
     }
+
+    @Override
+    protected void lazyLoad() {
+        super.lazyLoad();
+        LogUtils.e(TAG+"------>lazyLoad---");
+    }
     @Override
     protected int getContentLayoutId() {
         return R.layout.fragment_deal_real_briefing;
+    }
+
+    @Override
+    protected Object getStateEventKey() {
+        return TAG;
     }
 }

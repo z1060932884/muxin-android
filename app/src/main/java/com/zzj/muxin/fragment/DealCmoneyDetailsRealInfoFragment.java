@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.zzj.muxin.R;
 import com.zzj.muxin.bean.DealRealInfoBean;
 import com.zzj.muxin.viewmodel.DealRealInfoViewModel;
@@ -90,6 +91,13 @@ public class DealCmoneyDetailsRealInfoFragment extends BaseLifecycleFragment<Dea
     }
 
 
+
+    @Override
+    protected void lazyLoad() {
+        super.lazyLoad();
+        LogUtils.e(TAG+"------>lazyLoad---");
+    }
+
     @Override
     protected void dataObserver() {
         super.dataObserver();
@@ -130,21 +138,21 @@ public class DealCmoneyDetailsRealInfoFragment extends BaseLifecycleFragment<Dea
                 //资金
                 selection(ll_deal_real_fund);
                 showFragment = FIRST;
-                showHideFragment(mFragments[showFragment], mFragments[hideFragment]);
+//                showHideFragment(mFragments[showFragment], mFragments[hideFragment]);
                 hideFragment = FIRST;
                 break;
             case R.id.ll_deal_real_analyze:
                 //分析
                 selection(ll_deal_real_analyze);
                 showFragment = SECOND;
-                showHideFragment(mFragments[showFragment], mFragments[hideFragment]);
+//                showHideFragment(mFragments[showFragment], mFragments[hideFragment]);
                 hideFragment = SECOND;
                 break;
             case R.id.ll_deal_real_briefing:
                 //简况
                 selection(ll_deal_real_briefing);
                 showFragment = THIRD;
-                showHideFragment(mFragments[showFragment], mFragments[hideFragment]);
+//                showHideFragment(mFragments[showFragment], mFragments[hideFragment]);
                 hideFragment = THIRD;
                 break;
 
@@ -169,7 +177,12 @@ public class DealCmoneyDetailsRealInfoFragment extends BaseLifecycleFragment<Dea
         super.initWidget(root);
         mBaseViewModel.loadDealData();
         selection(ll_deal_real_fund);
-        loadFragment();
+//        loadFragment();
+    }
+
+    @Override
+    protected Object getStateEventKey() {
+        return TAG;
     }
 
     private void loadFragment() {

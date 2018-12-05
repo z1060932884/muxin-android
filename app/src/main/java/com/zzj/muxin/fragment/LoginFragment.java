@@ -54,4 +54,9 @@ public class LoginFragment extends BaseLifecycleFragment<UserViewModel> {
             }
         }
     }
+
+    @Override
+    protected Object getStateEventKey() {
+        return TAG;
+    }
 }

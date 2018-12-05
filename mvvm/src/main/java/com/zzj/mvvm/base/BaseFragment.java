@@ -31,7 +31,7 @@ public abstract class BaseFragment extends SupportFragment {
     // 标示是否第一次初始化数据
     protected boolean mIsFirstInitData = true;
 
-
+    protected boolean mIsFirstVisible = true;
 
 
     @Override
@@ -79,6 +79,15 @@ public abstract class BaseFragment extends SupportFragment {
         initData();
     }
 
+    @Override
+    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
+        boolean isVis = isHidden() || getUserVisibleHint();
+        if (isVis && mIsFirstVisible) {
+            lazyLoad();
+            mIsFirstVisible = false;
+        }
+    }
 
     /**
      * 初始化相关参数
@@ -126,6 +135,12 @@ public abstract class BaseFragment extends SupportFragment {
 
     }
 
+    /**
+     * 数据懒加载只加载一次
+     */
+    protected void lazyLoad() {
+
+    }
     /**
      * 返回按键触发时调用
      *
