@@ -19,10 +19,11 @@ import me.yokeyword.fragmentation.SupportActivity;
 public abstract class BaseActivity extends SupportActivity {
 
     protected LoadManager loadManager = null;
-
+    protected static String TAG = "";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TAG = this.getClass().getSimpleName();
         //设置布局内容
         if(getLayoutId()!=0){
             setContentView(getLayoutId());

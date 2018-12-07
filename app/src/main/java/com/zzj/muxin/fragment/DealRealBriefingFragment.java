@@ -30,7 +30,7 @@ public class DealRealBriefingFragment extends BaseLifecycleFragment<DealRealInfo
     @Override
     protected void lazyLoad() {
         super.lazyLoad();
-        LogUtils.e(TAG+"------>lazyLoad---");
+        LogUtils.e(TAG+"-----DealRealBriefingFragment->lazyLoad---");
     }
     @Override
     protected int getContentLayoutId() {

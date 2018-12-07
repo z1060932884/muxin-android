@@ -38,7 +38,7 @@ public abstract class BaseFragment extends SupportFragment {
     public void onAttach(android.app.Activity activity) {
         super.onAttach(activity);
 
-        TAG = this.getClass().getSimpleName();
+
         // 初始化参数
         initArgs(getArguments());
     }
@@ -82,6 +82,7 @@ public abstract class BaseFragment extends SupportFragment {
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
+        TAG = this.getClass().getSimpleName();
         boolean isVis = isHidden() || getUserVisibleHint();
         if (isVis && mIsFirstVisible) {
             lazyLoad();
@@ -109,8 +110,7 @@ public abstract class BaseFragment extends SupportFragment {
      */
     protected void initWidget(View root) {
         mRootUnBinder = ButterKnife.bind(this, root);
-        initAdapter();
-        initListener();
+
     }
 
     protected void initListener() {

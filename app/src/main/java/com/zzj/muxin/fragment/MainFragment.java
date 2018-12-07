@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.zzj.muxin.R;
 import com.zzj.muxin.adapter.DealAnalyzeTurnoverOrderAdapter;
@@ -33,7 +34,7 @@ public class MainFragment extends BaseLifecycleFragment<MianViewModel> {
 
     @BindView(R.id.viewPager)
     ViewPager viewPager;
-
+    List<BaseFragment> items = new ArrayList<>();
     private ViewPagerAdapter viewPagerAdapter;
     public static MainFragment newInstance() {
         
@@ -45,32 +46,32 @@ public class MainFragment extends BaseLifecycleFragment<MianViewModel> {
     @Override
     protected void initWidget(View root) {
         super.initWidget(root);
-        viewPagerAdapter  = new ViewPagerAdapter(getChildFragmentManager(),getFragments());
+        LogUtils.e(TAG+"----initWidget--->");
+        viewPagerAdapter  = new ViewPagerAdapter(getFragmentManager(),getFragments());
         viewPager.setAdapter(viewPagerAdapter);
         tab_bottom.setBottomItems(getBottomItem());
         tab_bottom.setBottomItemOnClickListener(new BottomTabLayout.BottomItemOnClickListener() {
             @Override
             public void bottomItemOnClick(View view, int i, BottomItem item) {
-                ToastUtils.showShort("bottomItemOnClick---->"+item.getName());
             }
         });
         tab_bottom.setShowIndex(0);
+
         tab_bottom.bindViewPager(viewPager);
     }
 
     private List<BaseFragment> getFragments(){
-        List<BaseFragment> items = new ArrayList<>();
         items.add(DealCmoneyDetailsRealInfoFragment.newInstance());
-        items.add(DealRealBriefingFragment.newInstance());
+        items.add(OspLinkManFragment.newInstance());
         items.add(DealRealAnalyzeFragment.newInstance());
         items.add(DealRealFundFragment.newInstance());
         return items;
     }
     private List<BottomItem> getBottomItem(){
         List<BottomItem> items = new ArrayList<>();
-        items.add(new BottomItem("首页",R.mipmap.ic_heart_blue));
-        items.add(new BottomItem("信息",R.mipmap.ic_heart_green));
-        items.add(new BottomItem("应用",R.mipmap.ic_heart_red));
+        items.add(new BottomItem("消息",R.mipmap.ic_heart_blue));
+        items.add(new BottomItem("联系人",R.mipmap.ic_heart_green));
+        items.add(new BottomItem("发现",R.mipmap.ic_heart_red));
         items.add(new BottomItem("我的",R.mipmap.ic_heart_yellow));
         return items;
     }

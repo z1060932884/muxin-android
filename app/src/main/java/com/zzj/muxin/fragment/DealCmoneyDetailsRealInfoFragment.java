@@ -95,29 +95,29 @@ public class DealCmoneyDetailsRealInfoFragment extends BaseLifecycleFragment<Dea
     @Override
     protected void lazyLoad() {
         super.lazyLoad();
-        LogUtils.e(TAG+"------>lazyLoad---");
+        LogUtils.e(TAG+"---DealCmoneyDetailsRealInfoFragment--->lazyLoad---");
     }
 
     @Override
     protected void dataObserver() {
         super.dataObserver();
         //顶部数据显示的viewmodel
-        mBaseViewModel.getDealData().observe(this, new Observer<DealRealInfoBean>() {
-            @Override
-            public void onChanged(@Nullable DealRealInfoBean dealRealInfoBean) {
-                tv_real_time_price.setText(dealRealInfoBean.getOriginal().getOpen() + "");
-                tv_real_time_change.setText(dealRealInfoBean.getOriginal().getChange() + "");
-                tv_real_time_percent.setText((dealRealInfoBean.getOriginal().getChange_rate() * 100) + "%");
-                tv_current_turnover.setText(dealRealInfoBean.getOriginal().getVol() + "");
-                tv_deal_high.setText(dealRealInfoBean.getOriginal().getHigh() + "");
-                tv_deal_low.setText(dealRealInfoBean.getOriginal().getLow() + "");
-                tv_deal_gross.setText(dealRealInfoBean.getOriginal().getLast() + "");
-                tv_deal_buy.setText(dealRealInfoBean.getOriginal().getBuy() + "");
-                tv_deal_sellout.setText(dealRealInfoBean.getOriginal().getSell() + "");
-                tv_deal_rate.setText(dealRealInfoBean.getFee() + "%");
-//                showSuccess();
-            }
-        });
+//        mBaseViewModel.getDealData().observe(this, new Observer<DealRealInfoBean>() {
+//            @Override
+//            public void onChanged(@Nullable DealRealInfoBean dealRealInfoBean) {
+//                tv_real_time_price.setText(dealRealInfoBean.getOriginal().getOpen() + "");
+//                tv_real_time_change.setText(dealRealInfoBean.getOriginal().getChange() + "");
+//                tv_real_time_percent.setText((dealRealInfoBean.getOriginal().getChange_rate() * 100) + "%");
+//                tv_current_turnover.setText(dealRealInfoBean.getOriginal().getVol() + "");
+//                tv_deal_high.setText(dealRealInfoBean.getOriginal().getHigh() + "");
+//                tv_deal_low.setText(dealRealInfoBean.getOriginal().getLow() + "");
+//                tv_deal_gross.setText(dealRealInfoBean.getOriginal().getLast() + "");
+//                tv_deal_buy.setText(dealRealInfoBean.getOriginal().getBuy() + "");
+//                tv_deal_sellout.setText(dealRealInfoBean.getOriginal().getSell() + "");
+//                tv_deal_rate.setText(dealRealInfoBean.getFee() + "%");
+////                showSuccess();
+//            }
+//        });
 
     }
 

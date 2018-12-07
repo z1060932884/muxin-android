@@ -185,7 +185,7 @@ public class DealRealFundFragment extends BaseLifecycleFragment<DealRealInfoView
     @Override
     protected void lazyLoad() {
         super.lazyLoad();
-        LogUtils.e(TAG+"------>lazyLoad---");
+        LogUtils.e(TAG+"----DealRealFundFragment-->lazyLoad---");
     }
     @Override
     protected Object getStateEventKey() {

@@ -108,7 +108,7 @@ public class DealRealAnalyzeFragment extends BaseLifecycleFragment<DealRealInfoV
     @Override
     protected void lazyLoad() {
         super.lazyLoad();
-        LogUtils.e(TAG+"------>lazyLoad---");
+        LogUtils.e(TAG+"----DealRealAnalyzeFragment-->lazyLoad---");
     }
     @Override
     protected void initWidget(View root) {
