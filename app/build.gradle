@@ -27,6 +27,8 @@ android {
     packagingOptions {
         exclude 'META-INF/proguard/androidx-annotations.pro'
     }
+
+
 }
 
 dependencies {
@@ -38,6 +40,7 @@ dependencies {
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
     implementation 'com.github.huangyanbin:SmartTable:2.2.0'
 
-
+    implementation 'com.zhihu.android:matisse:0.5.2-beta4'
+    compile 'com.vise.xiaoyaoyou:xsnow:2.1.9'
     implementation 'com.qmuiteam:qmui:1.1.3'
 }

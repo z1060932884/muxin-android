@@ -61,10 +61,10 @@ public class MainFragment extends BaseLifecycleFragment<MianViewModel> {
     }
 
     private List<BaseFragment> getFragments(){
-        items.add(DealCmoneyDetailsRealInfoFragment.newInstance());
+        items.add(ChatListFragment.newInstance());
         items.add(OspLinkManFragment.newInstance());
         items.add(DealRealAnalyzeFragment.newInstance());
-        items.add(DealRealFundFragment.newInstance());
+        items.add(MineFragment.newInstance());
         return items;
     }
     private List<BottomItem> getBottomItem(){

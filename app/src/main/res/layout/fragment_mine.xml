@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/len_28"
+        android:paddingTop="@dimen/len_10"
+        android:paddingBottom="@dimen/len_10"
+        >
+        <ImageView
+            android:id="@+id/iv_head_portrait"
+            android:layout_width="80dp"
+            android:layout_height="80dp" />
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           android:layout_marginLeft="@dimen/len_20"
+           android:layout_centerVertical="true"
+           android:layout_toRightOf="@+id/iv_head_portrait"
+           >
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="老潭"
+               />
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="慕信号：1111111"
+               android:layout_marginTop="@dimen/len_10"
+               />
+       </LinearLayout>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/ic_launcher_round"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/len_28"
+            />
+    </RelativeLayout>
+
+    <com.zzj.muxin.view.MineItemGroup
+        android:id="@+id/item_update"
+        app:drawable_left="@mipmap/ic_launcher_round"
+        app:drawable_right="@mipmap/ic_launcher"
+        app:line_color="@color/colorAccent"
+        app:line_height="2"
+        app:mTitle="版本更新"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/len_28"
+        />
+</LinearLayout>

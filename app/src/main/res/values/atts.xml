@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="MineItemGroup">
+        <attr name="mTitle" format="string"></attr>
+        <attr name="drawable_left" format="reference"></attr>
+        <attr name="drawable_right" format="reference"></attr>
+        <attr name="line_color" format="color"/>
+        <attr name="line_height" format="integer"/>
+
+    </declare-styleable>
+</resources>
