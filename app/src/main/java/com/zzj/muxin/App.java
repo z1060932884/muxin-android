@@ -6,6 +6,7 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.bumptech.glide.Glide;
+import com.finddreams.languagelib.MultiLanguageUtil;
 import com.tqzhang.stateview.core.LoadState;
 import com.zzj.mvvm.MVVMApp;
 import com.zzj.mvvm.config.URL;
@@ -27,6 +28,7 @@ public class App extends Application implements ComponentCallbacks2 {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
+        MultiLanguageUtil.init(this);
     }
 
 

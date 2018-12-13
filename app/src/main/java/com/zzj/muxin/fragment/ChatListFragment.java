@@ -1,11 +1,13 @@
 package com.zzj.muxin.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.zzj.muxin.R;
+import com.zzj.muxin.activity.SplashActivity;
 import com.zzj.muxin.listener.EchoWebSocketListener;
 import com.zzj.muxin.viewmodel.ChatListViewModel;
 import com.zzj.mvvm.base.BaseLifecycleFragment;
@@ -42,7 +44,7 @@ public class ChatListFragment extends BaseLifecycleFragment<ChatListViewModel> {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                connect();
+               startActivity(new Intent(mActivity,SplashActivity.class));
             }
         });
 

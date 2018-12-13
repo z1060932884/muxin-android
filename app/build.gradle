@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.zzj.muxin"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -34,6 +34,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':mvvm')
+
     //注解
     implementation 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor "com.jakewharton:butterknife-compiler:8.5.1"

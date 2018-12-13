@@ -33,11 +33,12 @@ public abstract class BaseFragment extends SupportFragment {
 
     protected boolean mIsFirstVisible = true;
 
+    protected BaseActivity mActivity;
 
     @Override
     public void onAttach(android.app.Activity activity) {
         super.onAttach(activity);
-
+        mActivity = (BaseActivity)activity;
 
         // 初始化参数
         initArgs(getArguments());

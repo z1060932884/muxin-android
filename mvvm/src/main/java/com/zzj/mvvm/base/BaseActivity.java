@@ -1,9 +1,11 @@
 package com.zzj.mvvm.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
+import com.finddreams.languagelib.MultiLanguageUtil;
 import com.tqzhang.stateview.core.LoadManager;
 import com.tqzhang.stateview.stateview.BaseStateControl;
 
@@ -20,6 +22,11 @@ public abstract class BaseActivity extends SupportActivity {
 
     protected LoadManager loadManager = null;
     protected static String TAG = "";
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(MultiLanguageUtil.attachBaseContext(newBase));
+    }
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

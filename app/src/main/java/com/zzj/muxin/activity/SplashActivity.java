@@ -3,6 +3,8 @@ package com.zzj.muxin.activity;
 import android.os.Bundle;
 
 import com.zzj.muxin.MainActivity;
+import com.zzj.muxin.R;
+import com.zzj.muxin.fragment.MultiLanguageFragment;
 import com.zzj.mvvm.base.BaseActivity;
 
 /**
@@ -16,12 +18,11 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        MainActivity.start(this);
-        finish();
+        loadRootFragment(R.id.fl_container,MultiLanguageFragment.newInstance());
     }
 
     @Override
     public int getLayoutId() {
-        return 0;
+        return R.layout.activity_main;
     }
 }
